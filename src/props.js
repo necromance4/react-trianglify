@@ -54,7 +54,11 @@ const allOptions = (PropTypes) => ({
   output: {
     defaultValue: 'canvas',
     type: PropTypes.oneOf(['svg', 'canvas', 'png'])
-  }
+  },
+  className: {
+    defaultValue: null,
+    type: PropTypes.string,
+  },
 })
 
 export const extractProps = (PropTypes) => {
