@@ -1,7 +1,7 @@
 'use strict'
 
-import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 import trianglify from 'trianglify'
 import { extractProps } from './props'
 
@@ -35,22 +35,22 @@ class Trianglify extends Component {
     return {
       canvas: {
         method: 'generateCanvas',
-        component: ({ canvasRef, height, width }) => (
-          <canvas ref={canvasRef} height={height} width={width} />
+        component: ({ canvasRef, height, width, className }) => (
+          <canvas ref={canvasRef} height={height} width={width} className={className} />
         )
       },
 
       svg: {
         method: 'generateSvg',
-        component: ({ pattern, height, width }) => (
-          <svg dangerouslySetInnerHTML={{ __html: pattern }} height={height} width={width} />
+        component: ({ pattern, height, width, className }) => (
+          <svg dangerouslySetInnerHTML={{ __html: pattern }} height={height} width={width} className={className} />
         )
       },
 
       png: {
         method: 'generatePng',
-        component: ({ pattern, height, width }) => (
-          <img src={pattern} height={height} width={width} />
+        component: ({ pattern, height, width, className }) => (
+          <img src={pattern} height={height} width={width} className={className} />
         )
       }
     }[output]
@@ -64,11 +64,12 @@ class Trianglify extends Component {
   }
 
   render () {
-    const { output, width, height } = this.props
+    const { output, width, height, className } = this.props
 
     return this.outputTypes(output).component({
       height,
       width,
+      className,
       pattern: this.state.pattern,
       canvasRef: (node) => (this.trianglify = node)
     })
